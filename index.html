@@ -8,819 +8,147 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --deep-teal: #0F6B6B;
-      --medium-teal: #1A9B9B;
-      --light-teal: #B8E6E6;
-      --pearl-white: #F5FBFB;
-      --cream-pearl: #F7F0E6;
-      --gold: #D4AF37;
-      --dark: #2C3E50;
-      --soft-coral: #E8A0A0;
-      --shadow: 0 8px 32px rgba(15, 107, 107, 0.15);
-      --shadow-hover: 0 12px 40px rgba(15, 107, 107, 0.25);
-      --radius: 20px;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--pearl-white);
-      color: var(--dark);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .view {
-      display: none;
-      animation: fadeIn 0.6s ease;
-      position: relative;
-      z-index: 1;
-    }
-
-    .view.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== MAIN VIEW ===== */
-    #main-view {
-      min-height: 100vh;
-      background: linear-gradient(160deg, var(--pearl-white) 0%, var(--cream-pearl) 40%, #E8F4F0 100%);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 60px 24px 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      right: -80px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(184, 230, 230, 0.4) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -60px;
-      left: -60px;
-      width: 250px;
-      height: 250px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--deep-teal), var(--medium-teal));
-      color: white;
-      padding: 8px 24px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      color: var(--deep-teal);
-      line-height: 1.15;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 span {
-      display: block;
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      color: var(--gold);
-      font-weight: 400;
-      margin-top: 8px;
-    }
-
-    .hero p {
-      font-size: clamp(1rem, 1.5vw, 1.15rem);
-      color: #5A7A7A;
-      max-width: 520px;
-      margin: 0 auto 32px;
-      line-height: 1.7;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero .decorative-line {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--light-teal));
-      border-radius: 2px;
-      margin: 0 auto 32px;
-    }
-
-    .float-icon {
-      position: absolute;
-      font-size: 1.6rem;
-      opacity: 0.25;
-      animation: floatAnim 6s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes floatAnim {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
-    }
-
-    /* ===== TILES ===== */
-    .tiles-container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 28px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tile {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius);
-      padding: 40px 24px 32px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tile::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      border-radius: var(--radius) var(--radius) 0 0;
-      transition: height 0.4s ease;
-    }
-
-    .tile:nth-child(1)::before { background: linear-gradient(90deg, #1A9B9B, #B8E6E6); }
-    .tile:nth-child(2)::before { background: linear-gradient(90deg, var(--gold), #F0D060); }
-    .tile:nth-child(3)::before { background: linear-gradient(90deg, var(--soft-coral), #F0C0C0); }
-
-    .tile:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-hover);
-      background: rgba(255, 255, 255, 0.95);
-    }
-
-    .tile:hover::before {
-      height: 6px;
-    }
-
-    .tile:active {
-      transform: translateY(-2px) scale(0.98);
-    }
-
-    .tile-icon {
-      font-size: 2.4rem;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .tile h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--deep-teal);
-      margin-bottom: 8px;
-    }
-
-    .tile .tile-relation {
-      font-size: 0.85rem;
-      color: #7A9E9E;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-    }
-
-    .tile .tile-arrow {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 1.2rem;
-      transition: transform 0.3s ease;
-      color: var(--medium-teal);
-    }
-
-    .tile:hover .tile-arrow {
-      transform: translateX(6px);
-    }
-
-    /* ===== PERSON VIEWS ===== */
-    .person-view {
-      min-height: 100vh;
-      background: var(--pearl-white);
-    }
-
-    .person-header {
-      position: relative;
-      padding: 60px 24px 40px;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .person-header.sylwia {
-      background: linear-gradient(160deg, #E8F4F4 0%, #F0F8F0 50%, var(--cream-pearl) 100%);
-    }
-
-    .person-header.basia {
-      background: linear-gradient(160deg, #F7F0E6 0%, #F5F0F0 50%, #F0F4F8 100%);
-    }
-
-    .person-header.milosz {
-      background: linear-gradient(160deg, #E8F0F8 0%, #F0F8F0 50%, #F8F0F0 100%);
-    }
-
-    .back-btn {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: 50px;
-      color: var(--deep-teal);
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .back-btn:hover {
-      background: white;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      transform: translateX(-3px);
-    }
-
-    .person-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 700;
-      color: var(--deep-teal);
-      margin-bottom: 8px;
-      animation: slideUp 0.8s ease;
-    }
-
-    .person-header .person-label {
-      display: inline-block;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.4rem;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .person-wishes {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px 40px;
-    }
-
-    .wishes-card {
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: var(--radius);
-      padding: 40px 36px;
-      box-shadow: var(--shadow);
-      animation: slideUp 0.8s ease;
-    }
-
-    .wishes-card .greeting {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.6rem;
-      color: var(--medium-teal);
-      margin-bottom: 16px;
-    }
-
-    .wishes-card p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #3D5A5A;
-      margin-bottom: 16px;
-    }
-
-    .wishes-card p:last-child {
-      margin-bottom: 0;
-    }
-
-    .wishes-card .signature {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.3rem;
-      color: var(--deep-teal);
-      margin-top: 20px;
-      text-align: right;
-    }
-
-    .wishes-divider {
-      width: 50px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin: 24px 0;
-    }
-
-    /* ===== SLIDESHOW ===== */
-    .slideshow-section {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px 60px;
-    }
-
-    .slideshow-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--deep-teal);
-      text-align: center;
-      margin-bottom: 24px;
-      font-weight: 600;
-    }
-
-    .slideshow-section h2::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--gold);
-      margin: 10px auto 0;
-    }
-
-    .slideshow-container {
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background: #E8F4F4;
-      aspect-ratio: 4 / 3;
-      max-height: 75vh;
-    }
-
-    .slides {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #E8F4F4;
-    }
-
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      padding: 12px;
-      background: #E8F4F4;
-    }
-
-    .slideshow-controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      z-index: 10;
-    }
-
-    .slideshow-dots {
-      display: flex;
-      gap: 8px;
-    }
-
-    .slideshow-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255,255,255,0.6);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      padding: 0;
-    }
-
-    .slideshow-dot.active {
-      background: var(--medium-teal);
-      transform: scale(1.3);
-    }
-
-    .slideshow-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(4px);
-      color: var(--deep-teal);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    }
-
-    .slideshow-arrow:hover {
-      background: white;
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .slideshow-arrow.prev {
-      left: 12px;
-    }
-
-    .slideshow-arrow.next {
-      right: 12px;
-    }
-
-    /* ===== BACKGROUND LABELS ===== */
-    .bg-labels {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .bg-label {
-      position: absolute;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      white-space: nowrap;
-      opacity: 0.5;
-      animation: waveAnim 8s ease-in-out infinite;
-    }
-
-    .bg-label:nth-child(1) {
-      top: 30%;
-      left: 2%;
-      font-size: clamp(2.2rem, 7vw, 5rem);
-      color: #D4AF37;
-      animation-delay: 0s;
-      transform: rotate(-6deg);
-    }
-
-    .bg-label:nth-child(2) {
-      top: 5%;
-      right: 2%;
-      font-size: clamp(1.8rem, 6vw, 4rem);
-      color: #1A9B9B;
-      animation-delay: 2.7s;
-      transform: rotate(4deg);
-    }
-
-    .bg-label:nth-child(3) {
-      bottom: 8%;
-      left: 5%;
-      font-size: clamp(2.8rem, 9vw, 6.5rem);
-      color: #E8A0A0;
-      animation-delay: 5.4s;
-      transform: rotate(-3deg);
-    }
-
-    @keyframes waveAnim {
-      0%, 100% { transform: var(--start-rotate, rotate(0deg)) translateY(0px); }
-      25% { transform: var(--start-rotate, rotate(0deg)) translateY(-12px); }
-      50% { transform: var(--start-rotate, rotate(0deg)) translateY(4px); }
-      75% { transform: var(--start-rotate, rotate(0deg)) translateY(-8px); }
-    }
-
-    .bg-label:nth-child(1) { --start-rotate: rotate(-8deg); }
-    .bg-label:nth-child(2) { --start-rotate: rotate(5deg); }
-    .bg-label:nth-child(3) { --start-rotate: rotate(-3deg); }
-
-    /* ===== PASSWORD MODAL ===== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 107, 107, 0.4);
-      backdrop-filter: blur(6px);
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .modal-overlay.show {
-      display: flex;
-    }
-
-    .modal-box {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius);
-      padding: 40px 36px 32px;
-      width: 90%;
-      max-width: 380px;
-      box-shadow: 0 20px 60px rgba(15, 107, 107, 0.25);
-      text-align: center;
-      animation: slideUp 0.4s ease;
-    }
-
-    .modal-box .modal-icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .modal-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--deep-teal);
-      margin-bottom: 6px;
-    }
-
-    .modal-box .modal-sub {
-      font-size: 0.9rem;
-      color: #7A9E9E;
-      margin-bottom: 24px;
-    }
-
-    .modal-box input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid var(--light-teal);
-      border-radius: 12px;
-      font-size: 1rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--dark);
-      background: var(--pearl-white);
-      transition: border-color 0.3s ease;
-      outline: none;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    .modal-box input:focus {
-      border-color: var(--medium-teal);
-    }
-
-    .modal-box .modal-btn {
-      display: inline-block;
-      padding: 12px 32px;
-      background: linear-gradient(135deg, var(--deep-teal), var(--medium-teal));
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Inter', sans-serif;
-      width: 100%;
-    }
-
-    .modal-box .modal-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(15, 107, 107, 0.3);
-    }
-
-    .modal-box .modal-error {
-      font-size: 0.85rem;
-      color: #D46A6A;
-      margin-top: 12px;
-      min-height: 1.4em;
-    }
-
-    .modal-box .modal-close {
-      margin-top: 12px;
-      display: inline-block;
-      background: none;
-      border: none;
-      color: #A0B8B8;
-      font-size: 0.85rem;
-      cursor: pointer;
-      padding: 4px 8px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .modal-box .modal-close:hover {
-      color: var(--deep-teal);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 640px) {
-      .bg-label:nth-child(1) {
-        top: 15%;
-        left: -15%;
-        font-size: clamp(2rem, 8vw, 4rem);
-      }
-      .bg-label:nth-child(2) {
-        top: 3%;
-        right: -10%;
-        font-size: clamp(1.8rem, 7vw, 3.5rem);
-      }
-      .bg-label:nth-child(3) {
-        bottom: 5%;
-        left: 3%;
-        font-size: clamp(2rem, 8vw, 4rem);
-      }
-
-      .tiles-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 20px 60px;
-      }
-
-      .tile {
-        padding: 28px 20px 24px;
-      }
-
-      .person-header {
-        padding: 80px 20px 32px;
-      }
-
-      .back-btn {
-        top: 16px;
-        left: 16px;
-        padding: 8px 16px;
-        font-size: 0.8rem;
-      }
-
-      .wishes-card {
-        padding: 28px 20px;
-      }
-
-      .slideshow-arrow {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-      }
-
-      .slideshow-arrow.prev { left: 8px; }
-      .slideshow-arrow.next { right: 8px; }
-    }
-
-    @media (min-width: 641px) and (max-width: 900px) {
-      .tiles-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --deep-teal:#0F6B6B; --medium-teal:#1A9B9B; --light-teal:#B8E6E6; --pearl-white:#F5FBFB; --cream-pearl:#F7F0E6; --gold:#D4AF37; --dark:#2C3E50; --soft-coral:#E8A0A0; --shadow:0 8px 32px rgba(15,107,107,.15); --shadow-hover:0 12px 40px rgba(15,107,107,.25); --radius:20px; }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:var(--pearl-white); color:var(--dark); min-height:100vh; overflow-x:hidden; }
+    .view { display:none; animation:fadeIn .6s ease; position:relative; z-index:1; }
+    .view.active { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes slideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+    #main-view { min-height:100vh; background:linear-gradient(160deg,var(--pearl-white) 0%,var(--cream-pearl) 40%,#E8F4F0 100%); }
+    .hero { text-align:center; padding:60px 24px 40px; position:relative; overflow:hidden; }
+    .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(184,230,230,.4) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(212,175,55,.15) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+    .hero-badge{display:inline-block;background:linear-gradient(135deg,var(--deep-teal),var(--medium-teal));color:#fff;padding:8px 24px;border-radius:50px;font-size:.85rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:var(--deep-teal);line-height:1.15;margin-bottom:16px;position:relative;z-index:1}
+    .hero h1 span{display:block;font-family:'Dancing Script',cursive;font-size:clamp(1.4rem,3vw,2rem);color:var(--gold);font-weight:400;margin-top:8px}
+    .hero p{font-size:clamp(1rem,1.5vw,1.15rem);color:#5A7A7A;max-width:520px;margin:0 auto 32px;line-height:1.7;position:relative;z-index:1}
+    .hero .decorative-line{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),var(--light-teal));border-radius:2px;margin:0 auto 32px}
+    .float-icon{position:absolute;font-size:1.6rem;opacity:.25;animation:floatAnim 6s ease-in-out infinite;pointer-events:none}
+    @keyframes floatAnim{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(10deg)}}
+    .tiles-container{max-width:960px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;position:relative;z-index:1}
+    .tile{background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);padding:40px 24px 32px;text-align:center;cursor:pointer;transition:all .4s cubic-bezier(.25,.46,.45,.94);box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .tile::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:var(--radius) var(--radius) 0 0;transition:height .4s ease}
+    .tile:nth-child(1)::before{background:linear-gradient(90deg,#1A9B9B,#B8E6E6)}
+    .tile:nth-child(2)::before{background:linear-gradient(90deg,var(--gold),#F0D060)}
+    .tile:nth-child(3)::before{background:linear-gradient(90deg,var(--soft-coral),#F0C0C0)}
+    .tile:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);background:rgba(255,255,255,.95)}
+    .tile:hover::before{height:6px}
+    .tile:active{transform:translateY(-2px) scale(.98)}
+    .tile-icon{font-size:2.4rem;margin-bottom:16px;display:block}
+    .tile h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--deep-teal);margin-bottom:8px}
+    .tile .tile-relation{font-size:.85rem;color:#7A9E9E;font-weight:400;letter-spacing:.3px}
+    .tile .tile-arrow{display:inline-block;margin-top:20px;font-size:1.2rem;transition:transform .3s ease;color:var(--medium-teal)}
+    .tile:hover .tile-arrow{transform:translateX(6px)}
+    .tile:nth-child(1){background-image:url('KWIATY-2.jpg');background-size:cover;background-position:center;color:#fff}
+    .tile:nth-child(1)::before{background:rgba(15,107,107,.7)}
+    .tile:nth-child(1) h2,.tile:nth-child(1) .tile-relation,.tile:nth-child(1) .tile-arrow{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+    .tile:nth-child(1)::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.35);pointer-events:none}
+    .tile:nth-child(1)>*{position:relative;z-index:1}
+    .person-view{min-height:100vh;background:var(--pearl-white)}
+    .person-header{position:relative;padding:60px 24px 40px;text-align:center;overflow:hidden}
+    .person-header.sylwia{background:linear-gradient(160deg,#E8F4F4 0%,#F0F8F0 50%,var(--cream-pearl) 100%)}
+    .person-header.basia{background:linear-gradient(160deg,#F7F0E6 0%,#F5F0F0 50%,#F0F4F8 100%)}
+    .person-header.milosz{background:linear-gradient(160deg,#E8F0F8 0%,#F0F8F0 50%,#F8F0F0 100%)}
+    .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.6);border-radius:50px;color:var(--deep-teal);font-size:.9rem;font-weight:500;cursor:pointer;transition:all .3s ease;text-decoration:none;font-family:'Inter',sans-serif}
+    .back-btn:hover{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.1);transform:translateX(-3px)}
+    .person-header h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;color:var(--deep-teal);margin-bottom:8px;animation:slideUp .8s ease}
+    .person-header .person-label{display:inline-block;font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--gold);margin-bottom:20px}
+    .person-wishes{max-width:720px;margin:0 auto;padding:0 24px 40px}
+    .wishes-card{background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);padding:40px 36px;box-shadow:var(--shadow);animation:slideUp .8s ease}
+    .wishes-card .greeting{font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--medium-teal);margin-bottom:16px}
+    .wishes-card p{font-size:1.05rem;line-height:1.8;color:#3D5A5A;margin-bottom:16px}
+    .wishes-card p:last-child{margin-bottom:0}
+    .wishes-card .signature{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--deep-teal);margin-top:20px;text-align:right}
+    .wishes-divider{width:50px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:24px 0}
+    .slideshow-section{max-width:720px;margin:0 auto;padding:0 24px 60px}
+    .slideshow-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--deep-teal);text-align:center;margin-bottom:24px;font-weight:600}
+    .slideshow-section h2::after{content:'';display:block;width:40px;height:2px;background:var(--gold);margin:10px auto 0}
+    .slideshow-container{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#E8F4F4;aspect-ratio:4/3;max-height:75vh}
+    .slides{position:relative;width:100%;height:100%}
+    .slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .8s ease-in-out;display:flex;align-items:center;justify-content:center;background:#E8F4F4}
+    .slide.active{opacity:1;z-index:1}
+    .slide img{width:100%;height:100%;object-fit:contain;display:block;padding:12px;background:#E8F4F4}
+    .slideshow-controls{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:10}
+    .slideshow-dots{display:flex;gap:8px}
+    .slideshow-dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.6);cursor:pointer;transition:all .3s ease;padding:0}
+    .slideshow-dot.active{background:var(--medium-teal);transform:scale(1.3)}
+    .slideshow-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.85);backdrop-filter:blur(4px);color:var(--deep-teal);font-size:1.2rem;cursor:pointer;transition:all .3s ease;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+    .slideshow-arrow:hover{background:#fff;transform:translateY(-50%) scale(1.1)}
+    .slideshow-arrow.prev{left:12px}.slideshow-arrow.next{right:12px}
+    .bg-labels{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;overflow:hidden}
+    .bg-label{position:absolute;font-family:'Playfair Display',serif;font-weight:700;white-space:nowrap;opacity:.5;animation:waveAnim 8s ease-in-out infinite}
+    .bg-label:nth-child(1){top:30%;left:2%;font-size:clamp(2.2rem,7vw,5rem);color:#D4AF37;animation-delay:0s;transform:rotate(-6deg)}
+    .bg-label:nth-child(2){top:5%;right:2%;font-size:clamp(1.8rem,6vw,4rem);color:#1A9B9B;animation-delay:2.7s;transform:rotate(4deg)}
+    .bg-label:nth-child(3){bottom:8%;left:5%;font-size:clamp(2.8rem,9vw,6.5rem);color:#E8A0A0;animation-delay:5.4s;transform:rotate(-3deg)}
+    @keyframes waveAnim{0%,100%{transform:var(--start-rotate,rotate(0deg)) translateY(0px)}25%{transform:var(--start-rotate,rotate(0deg)) translateY(-12px)}50%{transform:var(--start-rotate,rotate(0deg)) translateY(4px)}75%{transform:var(--start-rotate,rotate(0deg)) translateY(-8px)}}
+    .bg-label:nth-child(1){--start-rotate:rotate(-8deg)}.bg-label:nth-child(2){--start-rotate:rotate(5deg)}.bg-label:nth-child(3){--start-rotate:rotate(-3deg)}
+    @media (max-width:640px){.bg-label:nth-child(1){top:15%;left:-15%;font-size:clamp(2rem,8vw,4rem)}.bg-label:nth-child(2){top:3%;right:-10%;font-size:clamp(1.8rem,7vw,3.5rem)}.bg-label:nth-child(3){bottom:5%;left:3%;font-size:clamp(2rem,8vw,4rem)}.tiles-container{grid-template-columns:1fr;gap:20px;padding:0 20px 60px}.tile{padding:28px 20px 24px}.person-header{padding:80px 20px 32px}.back-btn{top:16px;left:16px;padding:8px 16px;font-size:.8rem}.wishes-card{padding:28px 20px}.slideshow-arrow{width:36px;height:36px;font-size:1rem}.slideshow-arrow.prev{left:8px}.slideshow-arrow.next{right:8px}}
+    @media (min-width:641px) and (max-width:900px){.tiles-container{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
 <body>
-
   <div class="bg-labels">
-    <span class="bg-label">BABCIA BASIA &#10084;</span>
-    <span class="bg-label">CIOCIA SYLWIA &#127800;</span>
-    <span class="bg-label">MIKLOC &#128081;</span>
+    <span class="bg-label">BABCIA BASIA ❤</span>
+    <span class="bg-label">CIOCIA SYLWIA 🌸</span>
+    <span class="bg-label">MIKLOC 👑</span>
   </div>
 
   <div id="main-view" class="view active" style="position:relative;z-index:1;">
     <section class="hero">
-      <div class="hero-badge">&#10047; Urodziny</div>
-      <h1>
-        Wszystkiego najlepszego!
-        <span>Z okazji Waszych urodzin</span>
-      </h1>
+      <div class="hero-badge">✿ Urodziny</div>
+      <h1>Wszystkiego najlepszego!<span>Z okazji Waszych urodzin</span></h1>
       <div class="decorative-line"></div>
-      <p>
-        Każdy z Was jest wyjątkowy i zasługuje na chwilę pełną
-        ciepła, radości i niezapomnianych wspomnień.
-        Wybierzcie osobę, do której chcesz zajrzeć.
-      </p>
-
-      <span class="float-icon" style="top: 15%; right: 10%; animation-delay: 0s;">&#10022;</span>
-      <span class="float-icon" style="top: 40%; left: 5%; animation-delay: 1.5s; font-size: 1rem;">&#10084;</span>
-      <span class="float-icon" style="bottom: 20%; right: 15%; animation-delay: 3s;">&#9733;</span>
-      <span class="float-icon" style="top: 25%; left: 12%; animation-delay: 2s; font-size: 1.2rem;">&#10022;</span>
+      <p>Każdy z Was jest wyjątkowy i zasługuje na chwilę pełną ciepła, radości i niezapomnianych wspomnień. Wybierzcie osobę, do której chcesz zajrzeć.</p>
+      <span class="float-icon" style="top:15%;right:10%;animation-delay:0s;">✦</span>
+      <span class="float-icon" style="top:40%;left:5%;animation-delay:1.5s;font-size:1rem;">❤</span>
+      <span class="float-icon" style="bottom:20%;right:15%;animation-delay:3s;">★</span>
+      <span class="float-icon" style="top:25%;left:12%;animation-delay:2s;font-size:1.2rem;">✦</span>
     </section>
 
     <div class="tiles-container">
       <div class="tile" onclick="showPerson('sylwia')">
-        <span class="tile-icon">&#127800;</span>
+        <span class="tile-icon">🌸</span>
         <h2>Sylwia</h2>
         <span class="tile-relation">Ciocia</span>
-        <span class="tile-arrow">&#8594;</span>
+        <span class="tile-arrow">→</span>
       </div>
-
       <div class="tile" onclick="showPerson('basia')">
-        <span class="tile-icon">&#127801;</span>
+        <span class="tile-icon">🌹</span>
         <h2>Basia</h2>
         <span class="tile-relation">Babcia</span>
-        <span class="tile-arrow">&#8594;</span>
+        <span class="tile-arrow">→</span>
       </div>
-
-      <div class="tile" onclick="requestPassword('milosz')">
-        <span class="tile-icon">&#127775;</span>
-        <h2>Mi&#322;osz</h2>
+      <div class="tile" onclick="showPerson('milosz')">
+        <span class="tile-icon">🌟</span>
+        <h2>Miłosz</h2>
         <span class="tile-relation">Brat cioteczny</span>
-        <span class="tile-arrow">&#8594;</span>
+        <span class="tile-arrow">→</span>
       </div>
     </div>
   </div>
 
   <div id="view-sylwia" class="view person-view">
     <section class="person-header sylwia">
-      <button class="back-btn" onclick="showMain()">&#8592; Wró&#263;</button>
+      <button class="back-btn" onclick="showMain()">← Wróć</button>
       <h1>Sylwia</h1>
       <span class="person-label">Kochana Ciocia</span>
     </section>
-
     <div class="person-wishes">
       <div class="wishes-card">
         <div class="greeting">Droga Ciociu Sylwio!</div>
-        <p>
-          Z okazji Twoich urodzin pragniemy złożyć Ci najserdeczniejsze
-          życzenia. Dziękujemy Ci za każde ciepło, które od Ciebie
-          płynie, za uśmiech, który zawsze gości na Twojej twarzy
-          i za serce, które otwierasz dla nas wszystkich.
-        </p>
+        <p>Z okazji Twoich urodzin pragniemy złożyć Ci najserdeczniejsze życzenia. Dziękujemy Ci za każde ciepło, które od Ciebie płynie, za uśmiech, który zawsze gości na Twojej twarzy i za serce, które otwierasz dla nas wszystkich.</p>
         <div class="wishes-divider"></div>
-        <p>
-          Niech każdy nadchodzący dzień będzie dla Ciebie
-          źródłem radości, a wszystkie marzenia niech spełniają
-          się jeden po drugim. Życzymy Ci zdrowia, spokoju, mnóstwa
-          powodów do uśmiechu i samych pięknych chwil w gronie
-          najbliższych.
-        </p>
-        <p>
-          Sto lat, kochana Ciociu!
-        </p>
-        <div class="signature">Z całego serca &#10084;</div>
+        <p>Niech każdy nadchodzący dzień będzie dla Ciebie źródłem radości, a wszystkie marzenia niech spełniają się jeden po drugim. Życzymy Ci zdrowia, spokoju, mnóstwa powodów do uśmiechu i samych pięknych chwil w gronie najbliższych.</p>
+        <p>Sto lat, kochana Ciociu!</p>
+        <div class="signature">Z całego serca ❤</div>
       </div>
     </div>
-
     <div class="slideshow-section">
       <h2>Wasze wspomnienia</h2>
       <div class="slideshow-container" data-slideshow="sylwia">
         <div class="slides">
-          <div class="slide active">
-            <img src="sylwia.jpg" alt="Sylwia zdjęcie 1" loading="lazy">
-          </div>
+          <div class="slide active"><img src="sylwia11.jpg" alt="Sylwia zdjęcie 11" loading="lazy"></div>
           <div class="slide"><img src="sylwia2.jpg" alt="Sylwia zdjęcie 2" loading="lazy"></div>
           <div class="slide"><img src="sylwia3.jpg" alt="Sylwia zdjęcie 3" loading="lazy"></div>
           <div class="slide"><img src="sylwia4.jpg" alt="Sylwia zdjęcie 4" loading="lazy"></div>
@@ -831,50 +159,40 @@
           <div class="slide"><img src="sylwia9.jpg" alt="Sylwia zdjęcie 9" loading="lazy"></div>
           <div class="slide"><img src="sylwia10.jpg" alt="Sylwia zdjęcie 10" loading="lazy"></div>
         </div>
-        <button class="slideshow-arrow prev" onclick="changeSlide('sylwia', -1)">&#10094;</button>
-        <button class="slideshow-arrow next" onclick="changeSlide('sylwia', 1)">&#10095;</button>
-        <div class="slideshow-controls">
-          <div class="slideshow-dots" id="dots-sylwia">
-            <button class="slideshow-dot active" onclick="goToSlide('sylwia', 0)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 1)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 2)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 3)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 4)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 5)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 6)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 7)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 8)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('sylwia', 9)"></button>
-          </div>
-        </div>
+        <button class="slideshow-arrow prev" onclick="changeSlide('sylwia', -1)">❮</button>
+        <button class="slideshow-arrow next" onclick="changeSlide('sylwia', 1)">❯</button>
+        <div class="slideshow-controls"><div class="slideshow-dots" id="dots-sylwia">
+          <button class="slideshow-dot active" onclick="goToSlide('sylwia', 0)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 1)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 2)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 3)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 4)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 5)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 6)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 7)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 8)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('sylwia', 9)"></button>
+        </div></div>
       </div>
     </div>
   </div>
 
   <div id="view-basia" class="view person-view">
     <section class="person-header basia">
-      <button class="back-btn" onclick="showMain()">&#8592; Wró&#263;</button>
+      <button class="back-btn" onclick="showMain()">← Wróć</button>
       <h1>Basia</h1>
       <span class="person-label">Ukochana Babcia</span>
     </section>
-
     <div class="person-wishes">
       <div class="wishes-card">
         <div class="greeting">Najdroższa Babciu Basiu!</div>
-        <p>
-          Z okazji Twoich urodzin chcielibyśmy podziękować Ci za wszystko, co dla nas robisz. Za Twoje ciepło, troskę, cierpliwość i bezgraniczną miłość. Jesteś naszą ostoją i największym skarbem.
-        </p>
+        <p>Z okazji Twoich urodzin chcielibyśmy podziękować Ci za wszystko, co dla nas robisz. Za Twoje ciepło, troskę, cierpliwość i bezgraniczną miłość. Jesteś naszą ostoją i największym skarbem.</p>
         <div class="wishes-divider"></div>
-        <p>
-          Życzymy Ci przede wszystkim zdrowia — tego najcenniejszego, które pozwala cieszyć się każdym dniem. Radości z drobnych rzeczy, spokoju ducha i samych pogodnych chwil. Niech każdy dzień przynosi Ci uśmiech i poczucie, jak bardzo jesteś kochana.
-        </p>
-        <p>
-          Sto lat, nasza kochana Babciu!
-        </p>
-        <div class="signature">Z całego serduszka &#10084;</div>
+        <p>Życzymy Ci przede wszystkim zdrowia — tego najcenniejszego, które pozwala cieszyć się każdym dniem. Radości z drobnych rzeczy, spokoju ducha i samych pogodnych chwil. Niech każdy dzień przynosi Ci uśmiech i poczucie, jak bardzo jesteś kochana.</p>
+        <p>Sto lat, nasza kochana Babciu!</p>
+        <div class="signature">Z całego serduszka ❤</div>
       </div>
     </div>
-
     <div class="slideshow-section">
       <h2>Nasze wspólne chwile</h2>
       <div class="slideshow-container" data-slideshow="basia">
@@ -887,245 +205,78 @@
           <div class="slide"><img src="babcia6.jpg" alt="Babcia zdjęcie 6" loading="lazy"></div>
           <div class="slide"><img src="babcia7.jpg" alt="Babcia zdjęcie 7" loading="lazy"></div>
         </div>
-        <button class="slideshow-arrow prev" onclick="changeSlide('basia', -1)">&#10094;</button>
-        <button class="slideshow-arrow next" onclick="changeSlide('basia', 1)">&#10095;</button>
-        <div class="slideshow-controls">
-          <div class="slideshow-dots" id="dots-basia">
-            <button class="slideshow-dot active" onclick="goToSlide('basia', 0)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('basia', 1)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('basia', 2)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('basia', 3)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('basia', 4)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('basia', 5)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('basia', 6)"></button>
-          </div>
-        </div>
+        <button class="slideshow-arrow prev" onclick="changeSlide('basia', -1)">❮</button>
+        <button class="slideshow-arrow next" onclick="changeSlide('basia', 1)">❯</button>
+        <div class="slideshow-controls"><div class="slideshow-dots" id="dots-basia">
+          <button class="slideshow-dot active" onclick="goToSlide('basia', 0)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('basia', 1)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('basia', 2)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('basia', 3)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('basia', 4)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('basia', 5)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('basia', 6)"></button>
+        </div></div>
       </div>
     </div>
   </div>
 
   <div id="view-milosz" class="view person-view">
     <section class="person-header milosz">
-      <button class="back-btn" onclick="showMain()">&#8592; Wróć</button>
+      <button class="back-btn" onclick="showMain()">← Wróć</button>
       <h1>Miłosz</h1>
       <span class="person-label">Nasz Brat</span>
     </section>
-
     <div class="person-wishes">
       <div class="wishes-card">
         <div class="greeting">Hej Miłosz!</div>
-        <p>
-          Wszystkiego najlepszego z okazji urodzin Mikloc! Nie wiem żebyś miał dużo kasy, dużo autografów w kartach i powodzenia z wyjścia z ligi w malinie XD.
-        </p>
+        <p>Wszystkiego najlepszego z okazji urodzin Mikloc! Nie wiem żebyś miał dużo kasy, dużo autografów w kartach i powodzenia z wyjścia z ligi w malinie XD.</p>
         <div class="wishes-divider"></div>
-        <p>
-          Łap każdą okazję do uśmiechu i otaczaj się ludźmi, którzy dodają Ci skrzydeł. Życzymy Ci mnóstwa frajdy z tego, co robisz, sukcesów w działaniu i przede wszystkim zdrowia i dystansu do świata.
-        </p>
-        <p>
-          Bądź sobą, a wszystko będzie dobrze!
-        </p>
+        <p>Łap każdą okazję do uśmiechu i otaczaj się ludźmi, którzy dodają Ci skrzydeł. Życzymy Ci mnóstwa frajdy z tego, co robisz, sukcesów w działaniu i przede wszystkim — zdrowia i dystansu do świata.</p>
+        <p>Bądź sobą, a wszystko będzie dobrze!</p>
         <div class="signature">Trzymaj się! ✌</div>
       </div>
     </div>
-
     <div class="slideshow-section">
       <h2>Nasze wspólne akcje</h2>
       <div class="slideshow-container" data-slideshow="milosz">
         <div class="slides">
-          <div class="slide active">
-            <img src="miłosz1.jpg" alt="Miłosz zdjęcie 1" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz2.jpg" alt="Miłosz zdjęcie 2" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz3.jpg" alt="Miłosz zdjęcie 3" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz4.jpg" alt="Miłosz zdjęcie 4" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz5.jpg" alt="Miłosz zdjęcie 5" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz6.jpg" alt="Miłosz zdjęcie 6" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz7.jpg" alt="Miłosz zdjęcie 7" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz8.jpg" alt="Miłosz zdjęcie 8" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz9.jpg" alt="Miłosz zdjęcie 9" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="miłosz10.jpg" alt="Miłosz zdjęcie 10" loading="lazy">
-          </div>
+          <div class="slide active"><img src="Miłosz11.jpg" alt="Miłosz zdjęcie 11" loading="lazy"></div>
+          <div class="slide"><img src="miłosz2.jpg" alt="Miłosz zdjęcie 2" loading="lazy"></div>
+          <div class="slide"><img src="miłosz3.jpg" alt="Miłosz zdjęcie 3" loading="lazy"></div>
+          <div class="slide"><img src="miłosz4.jpg" alt="Miłosz zdjęcie 4" loading="lazy"></div>
+          <div class="slide"><img src="miłosz5.jpg" alt="Miłosz zdjęcie 5" loading="lazy"></div>
+          <div class="slide"><img src="miłosz6.jpg" alt="Miłosz zdjęcie 6" loading="lazy"></div>
+          <div class="slide"><img src="miłosz7.jpg" alt="Miłosz zdjęcie 7" loading="lazy"></div>
+          <div class="slide"><img src="miłosz8.jpg" alt="Miłosz zdjęcie 8" loading="lazy"></div>
+          <div class="slide"><img src="miłosz9.jpg" alt="Miłosz zdjęcie 9" loading="lazy"></div>
+          <div class="slide"><img src="miłosz10.jpg" alt="Miłosz zdjęcie 10" loading="lazy"></div>
         </div>
-
-        <button class="slideshow-arrow prev" onclick="changeSlide('milosz', -1)">&#10094;</button>
-        <button class="slideshow-arrow next" onclick="changeSlide('milosz', 1)">&#10095;</button>
-
-        <div class="slideshow-controls">
-          <div class="slideshow-dots" id="dots-milosz">
-            <button class="slideshow-dot active" onclick="goToSlide('milosz', 0)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 1)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 2)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 3)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 4)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 5)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 6)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 7)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 8)"></button>
-            <button class="slideshow-dot" onclick="goToSlide('milosz', 9)"></button>
-          </div>
-        </div>
+        <button class="slideshow-arrow prev" onclick="changeSlide('milosz', -1)">❮</button>
+        <button class="slideshow-arrow next" onclick="changeSlide('milosz', 1)">❯</button>
+        <div class="slideshow-controls"><div class="slideshow-dots" id="dots-milosz">
+          <button class="slideshow-dot active" onclick="goToSlide('milosz', 0)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 1)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 2)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 3)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 4)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 5)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 6)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 7)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 8)"></button>
+          <button class="slideshow-dot" onclick="goToSlide('milosz', 9)"></button>
+        </div></div>
       </div>
     </div>
   </div>
 
-  <div class="modal-overlay" id="password-modal">
-    <div class="modal-box">
-      <span class="modal-icon">&#128274;</span>
-      <h3 id="modal-title">Wpisz hasło</h3>
-      <p class="modal-sub" id="modal-sub">Aby wejść do sekcji</p>
-      <input type="password" id="password-input" placeholder="Hasło" autocomplete="off">
-      <button class="modal-btn" onclick="checkPassword()">Wejdź</button>
-      <p class="modal-error" id="modal-error"></p>
-      <button class="modal-close" onclick="closeModal()">Anuluj</button>
-    </div>
-  </div>
-
   <script>
-    var passwords = {
-      sylwia: '12345',
-      basia: '67890',
-      milosz: 'MIKLOC67'
-    };
-
-    var currentPerson = null;
-
-    function requestPassword(person) {
-      currentPerson = person;
-      var names = { sylwia: 'Sylwii', basia: 'Basi', milosz: 'Mi\u0142osza' };
-      document.getElementById('modal-title').innerHTML = 'Sekcja ' + names[person];
-      document.getElementById('modal-sub').innerHTML = 'Wpisz hasło, aby wejść';
-      document.getElementById('password-input').value = '';
-      document.getElementById('modal-error').textContent = '';
-      document.getElementById('password-modal').classList.add('show');
-      setTimeout(function() {
-        document.getElementById('password-input').focus();
-      }, 300);
-    }
-
-    function closeModal() {
-      document.getElementById('password-modal').classList.remove('show');
-      currentPerson = null;
-    }
-
-    function checkPassword() {
-      var input = document.getElementById('password-input').value;
-      var error = document.getElementById('modal-error');
-      if (input === passwords[currentPerson]) {
-        var person = currentPerson;
-        closeModal();
-        showPerson(person);
-      } else {
-        error.innerHTML = 'Nieprawidłowe hasło. Spróbuj ponownie.';
-        document.getElementById('password-input').value = '';
-        document.getElementById('password-input').focus();
-      }
-    }
-
-    document.getElementById('password-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') { checkPassword(); }
-    });
-
-    function showMain() {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('main-view').classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showPerson(name) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('view-' + name).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
+    function showMain() { document.querySelectorAll('.view').forEach(v => v.classList.remove('active')); document.getElementById('main-view').classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    function showPerson(name) { document.querySelectorAll('.view').forEach(v => v.classList.remove('active')); document.getElementById('view-' + name).classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
     const slideshowState = {};
-
-    function initSlideshow(name) {
-      const container = document.querySelector('[data-slideshow="' + name + '"]');
-      if (!container) return;
-      const slides = container.querySelectorAll('.slide');
-      const dots = container.querySelectorAll('.slideshow-dot');
-
-      slideshowState[name] = {
-        current: 0,
-        total: slides.length,
-        autoTimer: null,
-        isPlaying: false,
-        slides: slides,
-        dots: dots,
-        container: container
-      };
-    }
-
-    function goToSlide(name, index) {
-      const state = slideshowState[name];
-      if (!state) return;
-      if (index < 0) index = state.total - 1;
-      if (index >= state.total) index = 0;
-
-      state.slides.forEach(s => s.classList.remove('active'));
-      state.dots.forEach(d => d.classList.remove('active'));
-
-      state.slides[index].classList.add('active');
-      state.dots[index].classList.add('active');
-      state.current = index;
-    }
-
-    function changeSlide(name, direction) {
-      const state = slideshowState[name];
-      if (!state) return;
-      goToSlide(name, state.current + direction);
-    }
-
-    function initEditableDescriptions() {
-      const containers = document.querySelectorAll('.slideshow-container');
-      containers.forEach(function(container) {
-        var person = container.getAttribute('data-slideshow');
-        var slides = container.querySelectorAll('.slide');
-        slides.forEach(function(slide, index) {
-          var p = slide.querySelector('.slide-placeholder p');
-          if (!p) return;
-
-          var key = 'desc-' + person + '-' + index;
-          var div = document.createElement('div');
-          div.className = 'slide-desc';
-          div.contentEditable = 'true';
-          div.setAttribute('data-key', key);
-
-          var saved = localStorage.getItem(key);
-          div.textContent = saved || p.textContent;
-
-          div.addEventListener('input', function() {
-            localStorage.setItem(key, this.textContent);
-          });
-
-          p.parentNode.replaceChild(div, p);
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      initSlideshow('sylwia');
-      initSlideshow('basia');
-      initSlideshow('milosz');
-      initEditableDescriptions();
-    });
+    function initSlideshow(name) { const container = document.querySelector('[data-slideshow="' + name + '"]'); if (!container) return; const slides = container.querySelectorAll('.slide'); const dots = container.querySelectorAll('.slideshow-dot'); slideshowState[name] = { current: 0, total: slides.length, slides: slides, dots: dots, container: container }; }
+    function goToSlide(name, index) { const state = slideshowState[name]; if (!state) return; if (index < 0) index = state.total - 1; if (index >= state.total) index = 0; state.slides.forEach(s => s.classList.remove('active')); state.dots.forEach(d => d.classList.remove('active')); state.slides[index].classList.add('active'); state.dots[index].classList.add('active'); state.current = index; }
+    function changeSlide(name, direction) { const state = slideshowState[name]; if (!state) return; goToSlide(name, state.current + direction); }
+    document.addEventListener('DOMContentLoaded', function() { initSlideshow('sylwia'); initSlideshow('basia'); initSlideshow('milosz'); });
   </script>
 </body>
 </html>
