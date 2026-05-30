@@ -433,90 +433,6 @@
       background: #E8F4F4;
     }
 
-    .slide-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-      text-align: center;
-    }
-
-    .slide-placeholder .placeholder-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
-
-    .slide-placeholder p {
-      font-size: 1rem;
-      color: #7A9E9E;
-      font-style: italic;
-    }
-
-    .slide-desc {
-      font-size: 1rem;
-      color: #7A9E9E;
-      font-style: italic;
-      cursor: text;
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1px dashed transparent;
-      transition: all 0.3s ease;
-      min-width: 60%;
-      max-width: 100%;
-      line-height: 1.5;
-      word-break: break-word;
-    }
-
-    .slide-desc:hover {
-      border-color: rgba(15, 107, 107, 0.15);
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    .slide-desc:focus {
-      border-color: var(--medium-teal);
-      background: rgba(255, 255, 255, 0.7);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(26, 155, 155, 0.1);
-    }
-
-    .slide-desc::before {
-      content: '\270E';
-      font-size: 0.75rem;
-      opacity: 0.3;
-      margin-right: 6px;
-      font-style: normal;
-    }
-
-    .slide-desc:empty::after {
-      content: 'Kliknij, aby dodać opis...';
-      opacity: 0.35;
-      font-style: italic;
-    }
-
-    .slide-placeholder .placeholder-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--light-teal);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    /* placeholder colors */
-    .slide:nth-child(1) .slide-placeholder { background: linear-gradient(135deg, #E8F4F4, #D0ECEC); }
-    .slide:nth-child(2) .slide-placeholder { background: linear-gradient(135deg, #F7F0E6, #F0E8D8); }
-    .slide:nth-child(3) .slide-placeholder { background: linear-gradient(135deg, #E8F0F8, #D8E8F0); }
-    .slide:nth-child(4) .slide-placeholder { background: linear-gradient(135deg, #F0E8F0, #E8D8E8); }
-    .slide:nth-child(5) .slide-placeholder { background: linear-gradient(135deg, #E8F8F0, #D8F0E0); }
-    .slide:nth-child(6) .slide-placeholder { background: linear-gradient(135deg, #F5F0E8, #EDE0D0); }
-    .slide:nth-child(7) .slide-placeholder { background: linear-gradient(135deg, #E8F0F8, #D0E0F0); }
-    .slide:nth-child(8) .slide-placeholder { background: linear-gradient(135deg, #F0E8F8, #E0D0F0); }
-    .slide:nth-child(9) .slide-placeholder { background: linear-gradient(135deg, #E8F8F8, #D0F0F0); }
-    .slide:nth-child(10) .slide-placeholder { background: linear-gradient(135deg, #F8F0E8, #F0E0D0); }
-
     .slideshow-controls {
       position: absolute;
       bottom: 20px;
@@ -902,7 +818,9 @@
       <h2>Wasze wspomnienia</h2>
       <div class="slideshow-container" data-slideshow="sylwia">
         <div class="slides">
-          <div class="slide active"><img src="sylwia.jpg" alt="Sylwia zdjęcie 1" loading="lazy"></div>
+          <div class="slide active">
+            <img src="sylwia.jpg" alt="Sylwia zdjęcie 1" loading="lazy">
+          </div>
           <div class="slide"><img src="sylwia2.jpg" alt="Sylwia zdjęcie 2" loading="lazy"></div>
           <div class="slide"><img src="sylwia3.jpg" alt="Sylwia zdjęcie 3" loading="lazy"></div>
           <div class="slide"><img src="sylwia4.jpg" alt="Sylwia zdjęcie 4" loading="lazy"></div>
@@ -944,17 +862,11 @@
       <div class="wishes-card">
         <div class="greeting">Najdroższa Babciu Basiu!</div>
         <p>
-          Z okazji Twoich urodzin chcielibyśmy podziękować Ci za
-          wszystko, co dla nas robisz. Za Twoje ciepło, troskę,
-          cierpliwość i bezgraniczną miłość. Jesteś naszą ostoją
-          i największym skarbem.
+          Z okazji Twoich urodzin chcielibyśmy podziękować Ci za wszystko, co dla nas robisz. Za Twoje ciepło, troskę, cierpliwość i bezgraniczną miłość. Jesteś naszą ostoją i największym skarbem.
         </p>
         <div class="wishes-divider"></div>
         <p>
-          Życzymy Ci przede wszystkim zdrowia — tego najcenniejszego,
-          które pozwala cieszyć się każdym dniem. Radości z drobnych
-          rzeczy, spokoju ducha i samych pogodnych chwil. Niech każdy
-          dzień przynosi Ci uśmiech i poczucie, jak bardzo jesteś kochana.
+          Życzymy Ci przede wszystkim zdrowia — tego najcenniejszego, które pozwala cieszyć się każdym dniem. Radości z drobnych rzeczy, spokoju ducha i samych pogodnych chwil. Niech każdy dzień przynosi Ci uśmiech i poczucie, jak bardzo jesteś kochana.
         </p>
         <p>
           Sto lat, nasza kochana Babciu!
@@ -1007,8 +919,7 @@
         </p>
         <div class="wishes-divider"></div>
         <p>
-          Łap każdą okazję do uśmiechu i otaczaj się ludźmi, którzy dodają Ci skrzydeł.
-          Życzymy Ci mnóstwa frajdy z tego, co robisz, sukcesów w działaniu i przede wszystkim zdrowia i dystansu do świata.
+          Łap każdą okazję do uśmiechu i otaczaj się ludźmi, którzy dodają Ci skrzydeł. Życzymy Ci mnóstwa frajdy z tego, co robisz, sukcesów w działaniu i przede wszystkim zdrowia i dystansu do świata.
         </p>
         <p>
           Bądź sobą, a wszystko będzie dobrze!
@@ -1021,21 +932,43 @@
       <h2>Nasze wspólne akcje</h2>
       <div class="slideshow-container" data-slideshow="milosz">
         <div class="slides">
-          <div class="slide active"><img src="miłosz1.jpg" alt="Miłosz zdjęcie 1" loading="lazy"></div>
-          <div class="slide"><img src="miłosz2.jpg" alt="Miłosz zdjęcie 2" loading="lazy"></div>
-          <div class="slide"><img src="miłosz3.jpg" alt="Miłosz zdjęcie 3" loading="lazy"></div>
-          <div class="slide"><img src="miłosz4.jpg" alt="Miłosz zdjęcie 4" loading="lazy"></div>
-          <div class="slide"><img src="miłosz5.jpg" alt="Miłosz zdjęcie 5" loading="lazy"></div>
-          <div class="slide"><img src="miłosz6.jpg" alt="Miłosz zdjęcie 6" loading="lazy"></div>
-          <div class="slide"><img src="miłosz7.jpg" alt="Miłosz zdjęcie 7" loading="lazy"></div>
-          <div class="slide"><img src="miłosz8.jpg" alt="Miłosz zdjęcie 8" loading="lazy"></div>
-          <div class="slide"><img src="miłosz9.jpg" alt="Miłosz zdjęcie 9" loading="lazy"></div>
-          <div class="slide"><img src="miłosz10.jpg" alt="Miłosz zdjęcie 10" loading="lazy"></div>
+          <div class="slide active">
+            <img src="Miłosz1.jpg" alt="Miłosz zdjęcie 1" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz2.jpg" alt="Miłosz zdjęcie 2" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz3.jpg" alt="Miłosz zdjęcie 3" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz4.jpg" alt="Miłosz zdjęcie 4" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz5.jpg" alt="Miłosz zdjęcie 5" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz6.jpg" alt="Miłosz zdjęcie 6" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz7.jpg" alt="Miłosz zdjęcie 7" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz8.jpg" alt="Miłosz zdjęcie 8" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz9.jpg" alt="Miłosz zdjęcie 9" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Miłosz10.jpg" alt="Miłosz zdjęcie 10" loading="lazy">
+          </div>
         </div>
+
         <button class="slideshow-arrow prev" onclick="changeSlide('milosz', -1)">&#10094;</button>
         <button class="slideshow-arrow next" onclick="changeSlide('milosz', 1)">&#10095;</button>
+
         <div class="slideshow-controls">
-          <div class="slideshow-dots" id="dots-miłosz">
+          <div class="slideshow-dots" id="dots-milosz">
             <button class="slideshow-dot active" onclick="goToSlide('milosz', 0)"></button>
             <button class="slideshow-dot" onclick="goToSlide('milosz', 1)"></button>
             <button class="slideshow-dot" onclick="goToSlide('milosz', 2)"></button>
