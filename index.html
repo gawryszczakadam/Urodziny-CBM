@@ -145,7 +145,6 @@
       margin: 0 auto 32px;
     }
 
-    /* decorative floating elements */
     .float-icon {
       position: absolute;
       font-size: 1.6rem;
@@ -493,12 +492,10 @@
     }
 
     .slide-desc:empty::after {
-      content: 'Kliknij, aby doda\u0107 opis...';
+      content: 'Kliknij, aby dodać opis...';
       opacity: 0.35;
       font-style: italic;
     }
-
-
 
     .slide-placeholder .placeholder-num {
       font-family: 'Playfair Display', serif;
@@ -826,9 +823,6 @@
     <span class="bg-label">MIKLOC &#128081;</span>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- MAIN VIEW -->
-  <!-- ============================================================ -->
   <div id="main-view" class="view active" style="position:relative;z-index:1;">
     <section class="hero">
       <div class="hero-badge">&#10047; Urodziny</div>
@@ -838,9 +832,9 @@
       </h1>
       <div class="decorative-line"></div>
       <p>
-        Każdy z Was jest wyj&#261;tkowy i zas&#322;uguje na chwil&#281; pe&#322;n&#261;
-        ciep&#322;a, rado&#347;ci i niezapomnianych wspomnie&#324;.
-        Wybierzcie osob&#281;, do której chcesz zajrze&#263;.
+        Każdy z Was jest wyjątkowy i zasługuje na chwilę pełną
+        ciepła, radości i niezapomnianych wspomnień.
+        Wybierzcie osobę, do której chcesz zajrzeć.
       </p>
 
       <span class="float-icon" style="top: 15%; right: 10%; animation-delay: 0s;">&#10022;</span>
@@ -850,8 +844,6 @@
     </section>
 
     <div class="tiles-container">
-      <!-- Sylwia -->
-      <!-- Sylwia -->
       <div class="tile" onclick="showPerson('sylwia')">
         <span class="tile-icon">&#127800;</span>
         <h2>Sylwia</h2>
@@ -859,7 +851,6 @@
         <span class="tile-arrow">&#8594;</span>
       </div>
 
-      <!-- Basia -->
       <div class="tile" onclick="showPerson('basia')">
         <span class="tile-icon">&#127801;</span>
         <h2>Basia</h2>
@@ -867,7 +858,6 @@
         <span class="tile-arrow">&#8594;</span>
       </div>
 
-      <!-- Mi&#322;osz -->
       <div class="tile" onclick="requestPassword('milosz')">
         <span class="tile-icon">&#127775;</span>
         <h2>Mi&#322;osz</h2>
@@ -877,9 +867,6 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- PERSON VIEW: SYLWIA -->
-  <!-- ============================================================ -->
   <div id="view-sylwia" class="view person-view">
     <section class="person-header sylwia">
       <button class="back-btn" onclick="showMain()">&#8592; Wró&#263;</button>
@@ -891,23 +878,23 @@
       <div class="wishes-card">
         <div class="greeting">Droga Ciociu Sylwio!</div>
         <p>
-          Z okazji Twoich urodzin pragniemy z&#322;o&#380;y&#263; Ci najserdeczniejsze
-          &#380;yczenia. Dzi&#281;kujemy Ci za ka&#380;de ciep&#322;o, które od Ciebie
-          p&#322;ynie, za u&#347;miech, który zawsze go&#347;ci na Twojej twarzy
+          Z okazji Twoich urodzin pragniemy złożyć Ci najserdeczniejsze
+          życzenia. Dziękujemy Ci za każde ciepło, które od Ciebie
+          płynie, za uśmiech, który zawsze gości na Twojej twarzy
           i za serce, które otwierasz dla nas wszystkich.
         </p>
         <div class="wishes-divider"></div>
         <p>
-          Niech ka&#380;dy nadchodz&#261;cy dzie&#324; b&#281;dzie dla Ciebie
-          &#378;ród&#322;em rado&#347;ci, a wszystkie marzenia niech spe&#322;niaj&#261;
-          si&#281; jeden po drugim. &#379;yczymy Ci zdrowia, spokoju, mnóstwa
-          powodów do u&#347;miechu i samych pi&#281;knych chwil w gronie
-          najbli&#380;szych.
+          Niech każdy nadchodzący dzień będzie dla Ciebie
+          źródłem radości, a wszystkie marzenia niech spełniają
+          się jeden po drugim. Życzymy Ci zdrowia, spokoju, mnóstwa
+          powodów do uśmiechu i samych pięknych chwil w gronie
+          najbliższych.
         </p>
         <p>
           Sto lat, kochana Ciociu!
         </p>
-        <div class="signature">Z ca&#322;ego serca &#10084;</div>
+        <div class="signature">Z całego serca &#10084;</div>
       </div>
     </div>
 
@@ -915,41 +902,19 @@
       <h2>Wasze wspomnienia</h2>
       <div class="slideshow-container" data-slideshow="sylwia">
         <div class="slides">
-          <div class="slide active">
-            <img src="C:\Users\Admin\Desktop\sylwia.jpg" alt="Sylwia zdj&#281;cie 1" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia2.jpg" alt="Sylwia zdj&#281;cie 2" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia3.jpg" alt="Sylwia zdj&#281;cie 3" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia4.jpg" alt="Sylwia zdj&#281;cie 4" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia5.jpg" alt="Sylwia zdj&#281;cie 5" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia6.jpg" alt="Sylwia zdj&#281;cie 6" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia7.jpg" alt="Sylwia zdj&#281;cie 7" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia8.jpg" alt="Sylwia zdj&#281;cie 8" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia9.jpg" alt="Sylwia zdj&#281;cie 9" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\sylwia10.jpg" alt="Sylwia zdj&#281;cie 10" loading="lazy">
-          </div>
+          <div class="slide active"><img src="sylwia.jpg" alt="Sylwia zdjęcie 1" loading="lazy"></div>
+          <div class="slide"><img src="sylwia2.jpg" alt="Sylwia zdjęcie 2" loading="lazy"></div>
+          <div class="slide"><img src="sylwia3.jpg" alt="Sylwia zdjęcie 3" loading="lazy"></div>
+          <div class="slide"><img src="sylwia4.jpg" alt="Sylwia zdjęcie 4" loading="lazy"></div>
+          <div class="slide"><img src="sylwia5.jpg" alt="Sylwia zdjęcie 5" loading="lazy"></div>
+          <div class="slide"><img src="sylwia6.jpg" alt="Sylwia zdjęcie 6" loading="lazy"></div>
+          <div class="slide"><img src="sylwia7.jpg" alt="Sylwia zdjęcie 7" loading="lazy"></div>
+          <div class="slide"><img src="sylwia8.jpg" alt="Sylwia zdjęcie 8" loading="lazy"></div>
+          <div class="slide"><img src="sylwia9.jpg" alt="Sylwia zdjęcie 9" loading="lazy"></div>
+          <div class="slide"><img src="sylwia10.jpg" alt="Sylwia zdjęcie 10" loading="lazy"></div>
         </div>
-
         <button class="slideshow-arrow prev" onclick="changeSlide('sylwia', -1)">&#10094;</button>
         <button class="slideshow-arrow next" onclick="changeSlide('sylwia', 1)">&#10095;</button>
-
         <div class="slideshow-controls">
           <div class="slideshow-dots" id="dots-sylwia">
             <button class="slideshow-dot active" onclick="goToSlide('sylwia', 0)"></button>
@@ -968,9 +933,6 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- PERSON VIEW: BASIA -->
-  <!-- ============================================================ -->
   <div id="view-basia" class="view person-view">
     <section class="person-header basia">
       <button class="back-btn" onclick="showMain()">&#8592; Wró&#263;</button>
@@ -980,25 +942,24 @@
 
     <div class="person-wishes">
       <div class="wishes-card">
-        <div class="greeting">Najdro&#380;sza Babciu Basiu!</div>
+        <div class="greeting">Najdroższa Babciu Basiu!</div>
         <p>
-          Z okazji Twoich urodzin chcieliby&#347;my podzi&#281;kowa&#263; Ci za
-          wszystko, co dla nas robisz. Za Twoje ciep&#322;o, trosk&#281;,
-          cierpliwo&#347;&#263; i bezgraniczn&#261; mi&#322;o&#347;&#263;.
-          Jeste&#347; nasz&#261; ostoj&#261; i najwi&#281;kszym skarbem.
+          Z okazji Twoich urodzin chcielibyśmy podziękować Ci za
+          wszystko, co dla nas robisz. Za Twoje ciepło, troskę,
+          cierpliwość i bezgraniczną miłość. Jesteś naszą ostoją
+          i największym skarbem.
         </p>
         <div class="wishes-divider"></div>
         <p>
-          &#379;yczymy Ci przede wszystkim zdrowia — tego najcenniejszego,
-          które pozwala cieszy&#263; si&#281; ka&#380;dym dniem. Rado&#347;ci
-          z drobnych rzeczy, spokoju ducha i samych pogodnych chwil.
-          Niech ka&#380;dy dzie&#324; przynosi Ci u&#347;miech i poczucie,
-          jak bardzo jeste&#347; kochana.
+          Życzymy Ci przede wszystkim zdrowia — tego najcenniejszego,
+          które pozwala cieszyć się każdym dniem. Radości z drobnych
+          rzeczy, spokoju ducha i samych pogodnych chwil. Niech każdy
+          dzień przynosi Ci uśmiech i poczucie, jak bardzo jesteś kochana.
         </p>
         <p>
           Sto lat, nasza kochana Babciu!
         </p>
-        <div class="signature">Z ca&#322;ego serduszka &#10084;</div>
+        <div class="signature">Z całego serduszka &#10084;</div>
       </div>
     </div>
 
@@ -1006,32 +967,16 @@
       <h2>Nasze wspólne chwile</h2>
       <div class="slideshow-container" data-slideshow="basia">
         <div class="slides">
-          <div class="slide active">
-            <img src="C:\Users\Admin\Desktop\babcia1.jpg" alt="Babcia zdj&#281;cie 1" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\babcia2.jpg" alt="Babcia zdj&#281;cie 2" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\babcia3.jpg" alt="Babcia zdj&#281;cie 3" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\babcia4.jpg" alt="Babcia zdj&#281;cie 4" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\babcia5.jpg" alt="Babcia zdj&#281;cie 5" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\babcia6.jpg" alt="Babcia zdj&#281;cie 6" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\babcia7.jpg" alt="Babcia zdj&#281;cie 7" loading="lazy">
-          </div>
+          <div class="slide active"><img src="babcia1.jpg" alt="Babcia zdjęcie 1" loading="lazy"></div>
+          <div class="slide"><img src="babcia2.jpg" alt="Babcia zdjęcie 2" loading="lazy"></div>
+          <div class="slide"><img src="babcia3.jpg" alt="Babcia zdjęcie 3" loading="lazy"></div>
+          <div class="slide"><img src="babcia4.jpg" alt="Babcia zdjęcie 4" loading="lazy"></div>
+          <div class="slide"><img src="babcia5.jpg" alt="Babcia zdjęcie 5" loading="lazy"></div>
+          <div class="slide"><img src="babcia6.jpg" alt="Babcia zdjęcie 6" loading="lazy"></div>
+          <div class="slide"><img src="babcia7.jpg" alt="Babcia zdjęcie 7" loading="lazy"></div>
         </div>
-
         <button class="slideshow-arrow prev" onclick="changeSlide('basia', -1)">&#10094;</button>
         <button class="slideshow-arrow next" onclick="changeSlide('basia', 1)">&#10095;</button>
-
         <div class="slideshow-controls">
           <div class="slideshow-dots" id="dots-basia">
             <button class="slideshow-dot active" onclick="goToSlide('basia', 0)"></button>
@@ -1047,30 +992,28 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- PERSON VIEW: MI&#321;OSZ -->
-  <!-- ============================================================ -->
   <div id="view-milosz" class="view person-view">
     <section class="person-header milosz">
-      <button class="back-btn" onclick="showMain()">&#8592; Wró&#263;</button>
-      <h1>Mi&#322;osz</h1>
+      <button class="back-btn" onclick="showMain()">&#8592; Wróć</button>
+      <h1>Miłosz</h1>
       <span class="person-label">Nasz Brat</span>
     </section>
 
     <div class="person-wishes">
       <div class="wishes-card">
-        <div class="greeting">Hej Mi&#322;osz!</div>
+        <div class="greeting">Hej Miłosz!</div>
         <p>
-          Wszystkiego najlepszego z okazji urodzin Mikloc! Nie wiem &#380;ebys mia&#322; du&#380;o kasy du&#380;o autografów w kartach i nie wiem powodzenia z wyj&#347;cia z ligi w malinie XD
+          Wszystkiego najlepszego z okazji urodzin Mikloc! Nie wiem żebyś miał dużo kasy, dużo autografów w kartach i powodzenia z wyjścia z ligi w malinie XD.
         </p>
         <div class="wishes-divider"></div>
         <p>
-          &#321;ap ka&#380;d&#261; okazj&#281; do u&#347;miechu i otaczaj si&#281; lud&#378;mi, którzy dodaj&#261; Ci skrzyde&#322;. &#379;yczymy Ci mnóstwa frajdy z tego, co robisz, sukcesów w dzia&#322;aniu i przede wszystkim — zdrowia i dystansu do &#347;wiata.
+          Łap każdą okazję do uśmiechu i otaczaj się ludźmi, którzy dodają Ci skrzydeł.
+          Życzymy Ci mnóstwa frajdy z tego, co robisz, sukcesów w działaniu i przede wszystkim zdrowia i dystansu do świata.
         </p>
         <p>
-          B&#261;d&#378; sob&#261;, a wszystko b&#281;dzie dobrze!
+          Bądź sobą, a wszystko będzie dobrze!
         </p>
-        <div class="signature">Trzymaj si&#281;! &#9996;</div>
+        <div class="signature">Trzymaj się! ✌</div>
       </div>
     </div>
 
@@ -1078,41 +1021,19 @@
       <h2>Nasze wspólne akcje</h2>
       <div class="slideshow-container" data-slideshow="milosz">
         <div class="slides">
-          <div class="slide active">
-            <img src="C:\Users\Admin\Desktop\miłosz1.jpg" alt="Mi&#322;osz zdj&#281;cie 1" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz2.jpg" alt="Mi&#322;osz zdj&#281;cie 2" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz3.jpg" alt="Mi&#322;osz zdj&#281;cie 3" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz4.jpg" alt="Mi&#322;osz zdj&#281;cie 4" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz5.jpg" alt="Mi&#322;osz zdj&#281;cie 5" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz6.jpg" alt="Mi&#322;osz zdj&#281;cie 6" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz7.jpg" alt="Mi&#322;osz zdj&#281;cie 7" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz8.jpg" alt="Mi&#322;osz zdj&#281;cie 8" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz9.jpg" alt="Mi&#322;osz zdj&#281;cie 9" loading="lazy">
-          </div>
-          <div class="slide">
-            <img src="C:\Users\Admin\Desktop\miłosz10.jpg" alt="Mi&#322;osz zdj&#281;cie 10" loading="lazy">
-          </div>
+          <div class="slide active"><img src="milosz1.jpg" alt="Miłosz zdjęcie 1" loading="lazy"></div>
+          <div class="slide"><img src="milosz2.jpg" alt="Miłosz zdjęcie 2" loading="lazy"></div>
+          <div class="slide"><img src="milosz3.jpg" alt="Miłosz zdjęcie 3" loading="lazy"></div>
+          <div class="slide"><img src="milosz4.jpg" alt="Miłosz zdjęcie 4" loading="lazy"></div>
+          <div class="slide"><img src="milosz5.jpg" alt="Miłosz zdjęcie 5" loading="lazy"></div>
+          <div class="slide"><img src="milosz6.jpg" alt="Miłosz zdjęcie 6" loading="lazy"></div>
+          <div class="slide"><img src="milosz7.jpg" alt="Miłosz zdjęcie 7" loading="lazy"></div>
+          <div class="slide"><img src="milosz8.jpg" alt="Miłosz zdjęcie 8" loading="lazy"></div>
+          <div class="slide"><img src="milosz9.jpg" alt="Miłosz zdjęcie 9" loading="lazy"></div>
+          <div class="slide"><img src="milosz10.jpg" alt="Miłosz zdjęcie 10" loading="lazy"></div>
         </div>
-
         <button class="slideshow-arrow prev" onclick="changeSlide('milosz', -1)">&#10094;</button>
         <button class="slideshow-arrow next" onclick="changeSlide('milosz', 1)">&#10095;</button>
-
         <div class="slideshow-controls">
           <div class="slideshow-dots" id="dots-milosz">
             <button class="slideshow-dot active" onclick="goToSlide('milosz', 0)"></button>
@@ -1131,25 +1052,19 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- PASSWORD MODAL -->
-  <!-- ============================================================ -->
   <div class="modal-overlay" id="password-modal">
     <div class="modal-box">
       <span class="modal-icon">&#128274;</span>
-      <h3 id="modal-title">Wpisz has&#322;o</h3>
-      <p class="modal-sub" id="modal-sub">Aby wej&#347;&#263; do sekcji</p>
-      <input type="password" id="password-input" placeholder="Has&#322;o" autocomplete="off">
-      <button class="modal-btn" onclick="checkPassword()">Wejd&#378;</button>
+      <h3 id="modal-title">Wpisz hasło</h3>
+      <p class="modal-sub" id="modal-sub">Aby wejść do sekcji</p>
+      <input type="password" id="password-input" placeholder="Hasło" autocomplete="off">
+      <button class="modal-btn" onclick="checkPassword()">Wejdź</button>
       <p class="modal-error" id="modal-error"></p>
       <button class="modal-close" onclick="closeModal()">Anuluj</button>
     </div>
   </div>
 
   <script>
-    // =============================================================
-    // PASSWORDS
-    // =============================================================
     var passwords = {
       sylwia: '12345',
       basia: '67890',
@@ -1162,7 +1077,7 @@
       currentPerson = person;
       var names = { sylwia: 'Sylwii', basia: 'Basi', milosz: 'Mi\u0142osza' };
       document.getElementById('modal-title').innerHTML = 'Sekcja ' + names[person];
-      document.getElementById('modal-sub').innerHTML = 'Wpisz has&#322;o, aby wej&#347;&#263;';
+      document.getElementById('modal-sub').innerHTML = 'Wpisz hasło, aby wejść';
       document.getElementById('password-input').value = '';
       document.getElementById('modal-error').textContent = '';
       document.getElementById('password-modal').classList.add('show');
@@ -1184,7 +1099,7 @@
         closeModal();
         showPerson(person);
       } else {
-        error.innerHTML = 'Nieprawid&#322;owe has&#322;o. Spr&#243;buj ponownie.';
+        error.innerHTML = 'Nieprawidłowe hasło. Spróbuj ponownie.';
         document.getElementById('password-input').value = '';
         document.getElementById('password-input').focus();
       }
@@ -1194,9 +1109,6 @@
       if (e.key === 'Enter') { checkPassword(); }
     });
 
-    // =============================================================
-    // VIEW NAVIGATION
-    // =============================================================
     function showMain() {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('main-view').classList.add('active');
@@ -1209,9 +1121,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // =============================================================
-    // SLIDESHOW ENGINE
-    // =============================================================
     const slideshowState = {};
 
     function initSlideshow(name) {
@@ -1251,11 +1160,6 @@
       goToSlide(name, state.current + direction);
     }
 
-
-
-    // =============================================================
-    // EDITABLE DESCRIPTIONS (auto-save to localStorage)
-    // =============================================================
     function initEditableDescriptions() {
       const containers = document.querySelectorAll('.slideshow-container');
       containers.forEach(function(container) {
@@ -1283,7 +1187,6 @@
       });
     }
 
-    // init all
     document.addEventListener('DOMContentLoaded', function() {
       initSlideshow('sylwia');
       initSlideshow('basia');
